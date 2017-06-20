@@ -1,7 +1,7 @@
-const initialState = [25]
+const initialState = [25];
 
 const otherReduce = (state = initialState, action) => {
-    return state
+    return state;
 }
 
  export default otherReduce;
