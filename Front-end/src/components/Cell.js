@@ -1,14 +1,10 @@
 import React from 'react'
-import { Alert } from 'reactstrap'
+import { Col, Button } from 'reactstrap'
 
 export default class Cell extends React.Component {
     render (){
         return (
-            <div className="cell">
-                <Alert color="success">
-                    <strong>Well done!</strong> You successfully read this important alert message.
-                </Alert>
-            </div>
+            <Button color="secondary" ></Button>
         );
     }
 }

@@ -1,19 +1,18 @@
 import React from 'react'
-import Column from './Column'
-
+import Row from './Row'
+import { Container} from 'reactstrap';
 
 export default class Grid extends React.Component {
     render (){
         return (
-            <div className="grid">
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-            </div>
+            <Container>
+                <Row/>
+                <Row/>
+                <Row/>
+                <Row/>
+                <Row/>
+                <Row/>
+            </Container>
         );
     }
 }

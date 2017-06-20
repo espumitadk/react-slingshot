@@ -1,17 +1,18 @@
 import React from 'react'
 import Cell from './Cell'
-
-export default class Column extends React.Component {
+import { Row as BootstraRow }  from 'reactstrap';
+export default class Row extends React.Component {
     render (){
         return (
-            <div className="column">
+            <BootstraRow>
                 <Cell/>
                 <Cell/>
                 <Cell/>
                 <Cell/>
                 <Cell/>
                 <Cell/>
-            </div>
+                <Cell/>
+            </BootstraRow>
         );
     }
 }
