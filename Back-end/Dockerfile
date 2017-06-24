@@ -1,10 +1,15 @@
-FROM microsoft/aspnetcore:1.0.5
+FROM java:8
 
-COPY . /app
-WORKDIR /app
+RUN apt-get update && apt-get install -y maven
 
-RUN ["dotnet", "restore"]
+WORKDIR /back-end-app
 
-EXPOSE 8080
+ADD pom.xml /back-end-app/pom.xml
+RUN ["mvn", "dependency:resolve"]
+RUN ["mvn", "verify"]
 
-ENTRYPOINT ["dotnet", "myapp.dll"]
+ADD src /back-end-app/src
+RUN ["mvn", "package"]
+
+EXPOSE 4567
+CMD ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
