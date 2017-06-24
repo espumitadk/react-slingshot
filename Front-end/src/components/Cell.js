@@ -9,8 +9,14 @@ export class Cell extends React.Component {
         if (this.props.cell != "" ){
           color = "danger";
         };
+        let style = {
+          "borderRadius": "70px",
+          "margin": "5px",
+          "width": "55px",
+          "height": "55px",
+        }
         return (
-            <Button color={color} className="col-ms-3" onClick={() => this.props.getNewCells(this.props.row, this.props.column)}></Button>
+            <Button color={color} style={style} className="col-ms-3" onClick={() => this.props.getNewCells(this.props.row, this.props.column)}></Button>
         );
     }
 }

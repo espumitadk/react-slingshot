@@ -1,7 +1,7 @@
 export const sendMovementAction = (row, column) => {
     return {
         type: 'SEND_MOVEMENT',
-        player: "PLAYER1",
+        player: "PLAYER_1",
         row: row,
         column: column
     }

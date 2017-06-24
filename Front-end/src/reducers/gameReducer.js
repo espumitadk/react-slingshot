@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const initialGame = {
     cells: {
         row1: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
@@ -12,9 +14,16 @@ const initialGame = {
 const gameReducer = (game = initialGame, action) => {
     if (action.type === "SEND_MOVEMENT") {
         game = {...game }
-        game.cells[action.row][action.column] = action.player;
+        insertInFirstRow(action.column, game, action.player);
     }
     return game
+}
+
+
+const insertInFirstRow = (column, game, player) => {
+    const rows = ["row6", "row5", "row4", "row3", "row2", "row1"];
+    const bottomRow = _.first(_.filter(rows, (x) => game.cells[x][column] == ""));
+    if(bottomRow != undefined) game.cells[bottomRow][column] = player;
 }
 
 export default gameReducer;
