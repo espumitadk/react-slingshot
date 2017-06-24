@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
-import otherReduce from './otherReduce';
+import gameReducer from './gameReducer';
 
 const combinedReducers = combineReducers({
-    user: userReducer,
-    otherComponent: otherReduce
+    game: gameReducer
 });
 
 export default combinedReducers;

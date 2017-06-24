@@ -1,4 +1,3 @@
-// Set up your application entry point here...
 import 'bootstrap/dist/css/bootstrap.css';
 
 import React from 'react'
@@ -8,9 +7,9 @@ import { createStore } from 'redux'
 import combinedReducers from './reducers/combinedReducers'
 import App from './containers/App'
 
-
-let store = createStore(combinedReducers)
-
+const store = createStore(combinedReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 render(
   <Provider store={store}>
@@ -19,8 +18,5 @@ render(
   document.getElementById('app')
 )
 
-store.subscribe(() =>{
-  console.log("Store changed", store.getState())
-})
 
-store.dispatch({type: "CHANGE_AGE", value: 22})
+//store.dispatch({ type: "SEND_MOVEMENT", cells: [45]});
