@@ -1,0 +1,8 @@
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\bin\Debug\netcoreapp1.0\WebAPIApplication.deps.json
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\bin\Debug\netcoreapp1.0\WebAPIApplication.runtimeconfig.json
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\bin\Debug\netcoreapp1.0\WebAPIApplication.runtimeconfig.dev.json
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\bin\Debug\netcoreapp1.0\WebAPIApplication.dll
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\bin\Debug\netcoreapp1.0\WebAPIApplication.pdb
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\obj\Debug\netcoreapp1.0\WebAPIApplication.AssemblyInfo.cs
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\obj\Debug\netcoreapp1.0\WebAPIApplication.dll
+D:\Projects\react-slingshot\Back-end\src\WebAPIApplication\obj\Debug\netcoreapp1.0\WebAPIApplication.pdb
