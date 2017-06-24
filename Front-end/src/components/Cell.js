@@ -4,16 +4,20 @@ import { Button } from 'reactstrap'
 import sendMovementAction from '../actions/sendMovementAction'
 
 export class Cell extends React.Component {
-    render (){
+    render () {
+        let color = "secondary";
+        if (this.props.cell != "" ){
+          color = "danger";
+        };
         return (
-            <Button color="secondary" className="col-ms-3" onClick={() => this.props.getNewCells(this.props.row, this.props.column)}>{this.props.row}_{this.props.column}</Button>
+            <Button color={color} className="col-ms-3" onClick={() => this.props.getNewCells(this.props.row, this.props.column)}></Button>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, componentProps) => {
   return {
-    cells: state.game.cells
+    cell: state.game.cells[componentProps.row][componentProps.column]
   }
 }
 
