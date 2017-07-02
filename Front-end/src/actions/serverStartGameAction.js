@@ -12,8 +12,7 @@ const getServerFirstMovement = () => {
     axios.get('http://192.168.99.100/startGame/')
     .then( (response) => {
         console.log(response.data);
-    })
-    .catch( (response) => {
+    }).catch( (response) => {
         console.log(error);
     });
     return {

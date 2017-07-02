@@ -22,7 +22,7 @@ export class Cell extends React.Component {
             <Button
                 color={color}
                 style={style}
-                disabled={!this.props.isGameStarted}
+                disabled={!this.props.isGameStarted || this.props.gameTurn == "SERVER"}
                 className="col-ms-3"
                 onClick={() => this.props.getNewCells(this.props.row, this.props.column)}
             ></Button>
@@ -33,7 +33,8 @@ export class Cell extends React.Component {
 const mapStateToProps = (state, componentProps) => {
   return {
     cell: state.game.cells[componentProps.row][componentProps.column],
-    isGameStarted: state.controls.gameControls.gameStarted
+    isGameStarted: state.controls.gameControls.gameStarted,
+    gameTurn: state.controls.gameControls.gameTurn
   }
 }
 
