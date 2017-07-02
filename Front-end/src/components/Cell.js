@@ -19,14 +19,21 @@ export class Cell extends React.Component {
           "height": "55px",
         }
         return (
-            <Button color={color} style={style} className="col-ms-3" onClick={() => this.props.getNewCells(this.props.row, this.props.column)}></Button>
+            <Button
+                color={color}
+                style={style}
+                disabled={!this.props.isGameStarted}
+                className="col-ms-3"
+                onClick={() => this.props.getNewCells(this.props.row, this.props.column)}
+            ></Button>
         );
     }
 }
 
 const mapStateToProps = (state, componentProps) => {
   return {
-    cell: state.game.cells[componentProps.row][componentProps.column]
+    cell: state.game.cells[componentProps.row][componentProps.column],
+    isGameStarted: state.controls.gameControls.gameStarted
   }
 }
 
