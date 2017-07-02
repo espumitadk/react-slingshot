@@ -12,7 +12,7 @@ const initialGame = {
 }
 
 const gameReducer = (game = initialGame, action) => {
-    if (action.type === "SEND_MOVEMENT") {
+    if (action.type === "PLAYER_MOVEMENT") {
         game = {...game };
         insertInFirstRow(action.column, game, action.player);
     }
