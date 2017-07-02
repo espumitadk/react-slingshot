@@ -2,17 +2,6 @@ from game import games
 from game.ConnectFour import ConnectFour
 from game.Heuristic import heuristic
 
-diff = {
-    1: 2,
-    2: 3,
-    3: 4
-}
-dif = raw_input("Dificultad (1-3): ")
-dif_num = int(str(dif).strip())
-
-difficult_graph_length = diff[dif_num]
-
-print difficult_graph_length
 player = 'X'
 problem_pLayer = player
 
@@ -36,7 +25,7 @@ while True:
         player = 'X'
     else:
         print "Thinking..."
-        move = games.alphabeta_search(state, game, difficult_graph_length, None, heuristic, problem_pLayer)
+        move = games.alphabeta_search(state, game, 4, None, heuristic, problem_pLayer)
         state = game.make_move(move, state)
         player = 'O'
     print "-------------------"
