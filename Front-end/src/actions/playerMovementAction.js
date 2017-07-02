@@ -1,8 +1,9 @@
 import axios from 'axios';
 import store from '../index'
+import serverMovementAction from './serverMovementAction'
 
 export const playerMovementAction = (row, column) => {
-    //MUST SEND TO THE SERVER WITH OTHER ACTION
+    store.dispatch(serverMovementAction()); //MUST SEND TO THE SERVER WITH OTHER ACTION
     return {
         type: 'SEND_MOVEMENT',
         player: "PLAYER_1",

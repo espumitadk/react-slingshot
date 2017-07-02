@@ -20,6 +20,10 @@ const gameReducer = (game = initialGame, action) => {
        game = {...game };
        game.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
     }
+    if (action.type === "SERVER_MOVEMENT"){
+       game = {...game };
+       game.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+    }
     return game
 }
 

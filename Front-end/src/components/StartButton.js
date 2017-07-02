@@ -6,8 +6,11 @@ import serverStartGameAction from '../actions/serverStartGameAction'
 export class StartButton extends React.Component {
     render (){
         return (
-           <Button color="warning" disabled={this.props.isGameStarted} onClick={() => this.props.startGame()}>START GAME</Button>
-
+            <Button
+                color="warning"
+                disabled={this.props.isGameStarted}
+                onClick={() => this.props.startGame()}
+            >START GAME</Button>
         );
     }
 }
