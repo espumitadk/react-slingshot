@@ -17,4 +17,3 @@ render(
 )
 
 export default store;
-//store.dispatch({ type: "SEND_MOVEMENT", cells: [45]});

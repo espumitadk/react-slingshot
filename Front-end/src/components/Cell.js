@@ -1,13 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Button } from 'reactstrap'
-import sendMovementAction from '../actions/sendMovementAction'
+import playerMovementAction from '../actions/playerMovementAction'
 
 export class Cell extends React.Component {
     render () {
         let color = "secondary";
-        if (this.props.cell != "" ){
+        if (this.props.cell == "PLAYER_1" ){
           color = "danger";
+        };
+        if (this.props.cell == "PLAYER_2" ){
+          color = "success";
         };
         let style = {
           "borderRadius": "70px",
@@ -29,7 +32,7 @@ const mapStateToProps = (state, componentProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getNewCells: (row, column) => dispatch(sendMovementAction(row, column))
+    getNewCells: (row, column) => dispatch(playerMovementAction(row, column))
   }
 }
 
