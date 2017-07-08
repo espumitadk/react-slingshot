@@ -1,15 +1,12 @@
-FROM java:8
+FROM microsoft/dotnet:1.0.5-sdk
 
-RUN apt-get update && apt-get install -y maven
+WORKDIR /app
+COPY . .
 
-WORKDIR /back-end-app
+ENV ASPNETCORE_URLS http://+80
+EXPOSE 80
 
-ADD pom.xml /back-end-app/pom.xml
-RUN ["mvn", "dependency:resolve"]
-RUN ["mvn", "verify"]
+RUN dotnet restore
 
-ADD src /back-end-app/src
-RUN ["mvn", "package"]
-
-EXPOSE 4567
-CMD ["/usr/lib/jvm/java-8-openjdk-amd64/bin/java", "-jar", "target/sparkexample-jar-with-dependencies.jar"]
+RUN dotnet publish -c Release -o out
+ENTRYPOINT ["dotnet", "out/app.dll"]
