@@ -1,24 +1,24 @@
 import axios from 'axios';
 import store from '../index'
 
-export const serverMovementAction = () => {
-    return {
+function serverNextMovement(movement) {
+        return {
         type: 'SERVER_MOVEMENT',
         player: "PLAYER_2",
-        serverMovement: getServerNextMovement()
+        serverMovement: movement
+    };
+}
+
+export const serverMovementAction = () => {
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    return dispatch => {
+        return  axios.post('http://localhost:8181/state', store.getState().game.cells
+                ).then( (response) => {
+                    dispatch(serverNextMovement(response.data));
+                }).catch( (response) => {
+                    console.log(response);
+                });
     }
 }
 
-const getServerNextMovement = () => {
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
-    axios.post('http://localhost:8181/state', store.getState().game.cells
-    ).then( (response) => {
-        return {
-            row: response.data.row,
-            column: response.data.column
-        };
-    }).catch( (response) => {
-        console.log(error);
-    });
-}
 export default serverMovementAction;

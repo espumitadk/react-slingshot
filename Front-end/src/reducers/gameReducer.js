@@ -14,16 +14,37 @@ const initialGame = {
 const gameReducer = (game = initialGame, action) => {
     if (action.type === "PLAYER_MOVEMENT") {
         const gameStateCloned = Object.assign({}, game);
+        gameStateCloned.cells = {...game.cells};
+        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
+        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
+        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
+        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
+        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
+        gameStateCloned.cells["row6"] = {...game.cells["row6"]};  
         insertInFirstRow(action.column, gameStateCloned, action.player);
         return gameStateCloned;
     }
     if (action.type === "SERVER_START_GAME"){
        const gameStateCloned = Object.assign({}, game); 
-   //    gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+       gameStateCloned.cells = {...game.cells};
+       gameStateCloned.cells["row1"] = {...game.cells["row1"]};
+       gameStateCloned.cells["row2"] = {...game.cells["row2"]};
+       gameStateCloned.cells["row3"] = {...game.cells["row3"]};
+       gameStateCloned.cells["row4"] = {...game.cells["row4"]};
+       gameStateCloned.cells["row5"] = {...game.cells["row5"]};
+       gameStateCloned.cells["row6"] = {...game.cells["row6"]};        
+       gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
        return gameStateCloned;
     }
     if (action.type === "SERVER_MOVEMENT"){
-       const gameStateCloned = Object.assign({}, game); 
+       const gameStateCloned = Object.assign({}, game);
+        gameStateCloned.cells = {...game.cells};
+        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
+        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
+        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
+        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
+        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
+        gameStateCloned.cells["row6"] = {...game.cells["row6"]};  
        gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
        return gameStateCloned;
     }
