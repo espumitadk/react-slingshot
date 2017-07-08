@@ -15,7 +15,7 @@ render(
 )
 
 store.subscribe(() => {
-    if(store.getState().controls.gameControls.gameTurn == "SERVER"){
+    if (store.getState().controls.gameControls.gameTurn == "SERVER"){
       store.dispatch(serverMovementAction());
     }
 });

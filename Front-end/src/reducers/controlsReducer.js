@@ -8,16 +8,19 @@ const initialControls = {
 
 const controlsReducer = (controls = initialControls, action) => {
     if (action.type === "SERVER_START_GAME") {
-        controls = {...controls };
-        controls.gameControls.gameStarted = true;
+        const controlsStateCloned = Object.assign({}, controls);
+     //   controlsStateCloned.gameControls.gameStarted = true;
+        return controlsStateCloned;
     }
     if (action.type === "PLAYER_MOVEMENT") {
-        controls = {...controls };
-        controls.gameControls.gameTurn = "SERVER";
+        const controlsStateCloned = Object.assign({}, controls);
+        controlsStateCloned.gameControls.gameTurn = "SERVER";
+        return controlsStateCloned;
     }
     if (action.type === "SERVER_MOVEMENT") {
-        controls = {...controls };
-        controls.gameControls.gameTurn = "PLAYER";
+        const controlsStateCloned = Object.assign({}, controls);
+        controlsStateCloned.gameControls.gameTurn = "PLAYER";
+        return controlsStateCloned;
     }
     return controls
 }

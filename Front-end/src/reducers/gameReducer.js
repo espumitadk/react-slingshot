@@ -13,16 +13,19 @@ const initialGame = {
 
 const gameReducer = (game = initialGame, action) => {
     if (action.type === "PLAYER_MOVEMENT") {
-        game = {...game };
-        insertInFirstRow(action.column, game, action.player);
+        const gameStateCloned = Object.assign({}, game);
+        insertInFirstRow(action.column, gameStateCloned, action.player);
+        return gameStateCloned;
     }
     if (action.type === "SERVER_START_GAME"){
-       game = {...game };
-       game.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+       const gameStateCloned = Object.assign({}, game); 
+   //    gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+       return gameStateCloned;
     }
     if (action.type === "SERVER_MOVEMENT"){
-       game = {...game };
-       game.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+       const gameStateCloned = Object.assign({}, game); 
+       gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
+       return gameStateCloned;
     }
     return game
 }
