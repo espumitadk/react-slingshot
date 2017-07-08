@@ -11,7 +11,10 @@ namespace app.Controllers {
      
         [HttpPost]
         public IActionResult playerMovement([FromBody]GameState state) {
-            return Json(state);
+            var serverMovement = new Movement();
+            serverMovement.row = "row6";
+            serverMovement.column = "column4";
+            return Json(serverMovement);
         }
     }
 
@@ -33,4 +36,10 @@ namespace app.Controllers {
         public string column6 { get;  set;}
         public string column7 { get;  set;}
     }
+
+    public class Movement {
+        public string row { get;  set;}
+        public string column { get;  set;}
+    }
+
 }

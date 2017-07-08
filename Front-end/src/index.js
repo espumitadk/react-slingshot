@@ -1,14 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import combinedReducers from './reducers/combinedReducers'
+import configureStore from './store/configureStore'
 import App from './containers/App'
 import serverMovementAction from './actions/serverMovementAction'
 
-const store = createStore(combinedReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const store = configureStore();
 
 render(
   <Provider store={store}>
