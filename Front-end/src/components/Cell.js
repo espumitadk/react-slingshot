@@ -6,10 +6,10 @@ import playerMovementAction from '../actions/playerMovementAction'
 export class Cell extends React.Component {
     render () {
         let color = "secondary";
-        if (this.props.cell == "PLAYER_1" ){
+        if (this.props.player == "PLAYER_1" ){
           color = "danger";
         };
-        if (this.props.cell == "PLAYER_2" ){
+        if (this.props.player == "PLAYER_2" ){
           color = "success";
         };
         let style = {
@@ -32,10 +32,15 @@ export class Cell extends React.Component {
 
 const mapStateToProps = (state, componentProps) => {
   return {
-    cell: state.game.cells[componentProps.row][componentProps.column],
+    player: getPlayer(state.game.cells, componentProps),
     isGameStarted: state.controls.gameControls.gameStarted,
     gameTurn: state.controls.gameControls.gameTurn
   }
+}
+
+function getPlayer(cells, componentProps){
+  const results =  _.filter(cells, cell => cell.row == componentProps.row && cell.column == componentProps.column);
+  return results.length > 0 ? results[0].player : "";
 }
 
 const mapDispatchToProps = dispatch => {

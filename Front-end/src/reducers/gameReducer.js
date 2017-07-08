@@ -1,50 +1,25 @@
 import _ from 'lodash'
 
 const initialGame = {
-    cells: {
-        row1: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
-        row2: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
-        row3: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
-        row4: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
-        row5: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" },
-        row6: { column1: "", column2: "", column3: "", column4: "", column5: "", column6: "", column7: "" }
-    }
+    cells: []
 }
 
 const gameReducer = (game = initialGame, action) => {
     if (action.type === "PLAYER_MOVEMENT") {
         const gameStateCloned = Object.assign({}, game);
-        gameStateCloned.cells = {...game.cells};
-        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
-        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
-        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
-        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
-        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
-        gameStateCloned.cells["row6"] = {...game.cells["row6"]};  
+        gameStateCloned.cells = [...game.cells];
         insertInFirstRow(action.column, gameStateCloned, action.player);
         return gameStateCloned;
     }
     if (action.type === "SERVER_START_GAME"){
         const gameStateCloned = Object.assign({}, game); 
-        gameStateCloned.cells = {...game.cells};
-        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
-        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
-        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
-        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
-        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
-        gameStateCloned.cells["row6"] = {...game.cells["row6"]};
+        gameStateCloned.cells = [...game.cells];
         insertInFirstRow(action.serverMovement.column, gameStateCloned, action.player);
         return gameStateCloned;
     }
     if (action.type === "SERVER_MOVEMENT"){
         const gameStateCloned = Object.assign({}, game);
-        gameStateCloned.cells = {...game.cells};
-        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
-        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
-        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
-        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
-        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
-        gameStateCloned.cells["row6"] = {...game.cells["row6"]};  
+        gameStateCloned.cells = [...game.cells];
         insertInFirstRow(action.serverMovement.column, gameStateCloned, action.player);
         return gameStateCloned;
     }
@@ -53,9 +28,24 @@ const gameReducer = (game = initialGame, action) => {
 
 
 const insertInFirstRow = (column, game, player) => {
-    const rows = ["row6", "row5", "row4", "row3", "row2", "row1"];
-    const bottomRow = _.first(_.filter(rows, (x) => game.cells[x][column] == ""));
-    if(bottomRow != undefined) game.cells[bottomRow][column] = player;
+    const rowsInCollumns = _.map(_.filter(game.cells, cell => cell.column == column), cell => cell.row);
+    if (rowsInCollumns.length == 0) {
+        game.cells.push({
+            row: "row6",
+            column: column,
+            player: player
+        });
+        return;
+    }
+    const orderCells = _.orderBy(rowsInCollumns);
+    const topCellOcupied = orderCells[0];
+    const nextIndex = _.indexOf(["row1", "row2", "row3", "row4", "row5", "row6"], topCellOcupied);
+    const firstRow = "row" + nextIndex;
+    if(nextIndex >= 1) game.cells.push({
+        row: firstRow,
+        column: column,
+        player: player
+    });
 }
 
 export default gameReducer;
