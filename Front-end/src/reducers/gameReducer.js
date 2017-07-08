@@ -25,19 +25,19 @@ const gameReducer = (game = initialGame, action) => {
         return gameStateCloned;
     }
     if (action.type === "SERVER_START_GAME"){
-       const gameStateCloned = Object.assign({}, game); 
-       gameStateCloned.cells = {...game.cells};
-       gameStateCloned.cells["row1"] = {...game.cells["row1"]};
-       gameStateCloned.cells["row2"] = {...game.cells["row2"]};
-       gameStateCloned.cells["row3"] = {...game.cells["row3"]};
-       gameStateCloned.cells["row4"] = {...game.cells["row4"]};
-       gameStateCloned.cells["row5"] = {...game.cells["row5"]};
-       gameStateCloned.cells["row6"] = {...game.cells["row6"]};        
-       gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
-       return gameStateCloned;
+        const gameStateCloned = Object.assign({}, game); 
+        gameStateCloned.cells = {...game.cells};
+        gameStateCloned.cells["row1"] = {...game.cells["row1"]};
+        gameStateCloned.cells["row2"] = {...game.cells["row2"]};
+        gameStateCloned.cells["row3"] = {...game.cells["row3"]};
+        gameStateCloned.cells["row4"] = {...game.cells["row4"]};
+        gameStateCloned.cells["row5"] = {...game.cells["row5"]};
+        gameStateCloned.cells["row6"] = {...game.cells["row6"]};
+        insertInFirstRow(action.serverMovement.column, gameStateCloned, action.player);
+        return gameStateCloned;
     }
     if (action.type === "SERVER_MOVEMENT"){
-       const gameStateCloned = Object.assign({}, game);
+        const gameStateCloned = Object.assign({}, game);
         gameStateCloned.cells = {...game.cells};
         gameStateCloned.cells["row1"] = {...game.cells["row1"]};
         gameStateCloned.cells["row2"] = {...game.cells["row2"]};
@@ -45,8 +45,8 @@ const gameReducer = (game = initialGame, action) => {
         gameStateCloned.cells["row4"] = {...game.cells["row4"]};
         gameStateCloned.cells["row5"] = {...game.cells["row5"]};
         gameStateCloned.cells["row6"] = {...game.cells["row6"]};  
-       gameStateCloned.cells[action.serverMovement.row][action.serverMovement.column] = action.player;
-       return gameStateCloned;
+        insertInFirstRow(action.serverMovement.column, gameStateCloned, action.player);
+        return gameStateCloned;
     }
     return game
 }

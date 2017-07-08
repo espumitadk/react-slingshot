@@ -12,8 +12,8 @@ namespace app.Controllers {
         [HttpPost]
         public IActionResult playerMovement([FromBody]GameState state) {
             var serverMovement = new Movement();
-            serverMovement.row = "row6";
-            serverMovement.column = "column4";
+            var RandomColumn = new System.Random().Next(1, 8);
+            serverMovement.column = "column" + RandomColumn;
             return Json(serverMovement);
         }
     }
@@ -38,7 +38,6 @@ namespace app.Controllers {
     }
 
     public class Movement {
-        public string row { get;  set;}
         public string column { get;  set;}
     }
 
