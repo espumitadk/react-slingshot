@@ -5,7 +5,7 @@ import StartButton from '../components/StartButton'
 export const App = () => {
     return (
         <div>
-            <Grid/>,
+            <Grid/>
             <StartButton/>
         </div>    
     )
