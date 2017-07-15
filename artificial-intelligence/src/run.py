@@ -5,7 +5,7 @@ import socket
 import json
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serverSocket.bind(("localhost", 5051))
+serverSocket.bind(("artificial-intelligence", 5051))
 serverSocket.listen(1)
 game = ConnectFour()
 
