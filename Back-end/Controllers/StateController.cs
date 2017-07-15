@@ -18,16 +18,27 @@ namespace app.Controllers {
             var RandomColumn = new System.Random().Next(1, 8);
             serverMovement.column = "column" + RandomColumn;
             TcpClient client = new TcpClient();
-            client.Client.Connect(IPAddress.Parse("artificial-intelligence"), 5051);
-            client.Client.Send(Encoding.UTF8.GetBytes("[{\"x\": 1,\"y\": 1,\"player\": \"X\"},{\"x\": 1,\"y\": 2,\"player\": \"X\"},{\"x\": 1,\"y\": 3,\"player\": \"X\"}]"));           
+            client.Client.Connect(IPAddress.Parse("172.18.0.3"), 5051);
+            var serverFormatState = state.Select(cell => {
+                var serverCell = new ServerCell();
+                serverCell.x = 1;
+                serverCell.y = 1;
+                serverCell.player = cell.player == "PLAYER_2" ? "X" : "O";
+                return serverCell;
+            });
+            client.Client.Send(Encoding.UTF8.GetBytes("[]"));           
+            byte[] buffer = Encoding.UTF8.GetBytes("This message is longer than what the server is willing to read.");
+            int len = client.GetStream().Read(buffer, 0, buffer.Length);
+            string message = Encoding.UTF8.GetString(buffer, 0, len);
+            serverMovement.column = "column" + message;
             return Json(serverMovement);
         }
 
     }
 
     public class Cell {
-        public string row { get;  set;}
-        public string column { get;  set;}
+        public short row { get;  set;}
+        public short column { get;  set;}
         public string player { get;  set;}
     }
 
@@ -36,5 +47,10 @@ namespace app.Controllers {
     }
 
     
+    public class ServerCell {
+        public short x { get;  set;}
+        public short y { get;  set;}
+        public string player { get;  set;}
+    }
 
 }
