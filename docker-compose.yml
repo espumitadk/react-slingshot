@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  artificial-intelligence:
+    build: ./artificial-intelligence
+
+  back-end:
+    build: ./Back-end
+    ports:
+      - 8181:80
