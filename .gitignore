@@ -29,7 +29,7 @@ node_modules
 #dist folder
 dist
 
-# IDEA/Webstorm project files
+# IDEA/Webstorm/pycharm project files
 .idea
 *.iml
 
@@ -38,3 +38,6 @@ dist
 
 # Mac files
 .DS_Store
+
+# python
+*.pyc
