@@ -1,12 +1,15 @@
-FROM node:8.0.0
+FROM node:7.10
 
-WORKDIR /front-end-web
+WORKDIR /app
 
-COPY . /front-end-web
+COPY package.json .
+COPY package-lock.json .
+COPY webpack.config.dev.js .
+COPY ./tools ./tools
+COPY ./src ./src
 
-RUN  rm -rf /fron-end-web/node_modules
 RUN ["npm", "install"]
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
