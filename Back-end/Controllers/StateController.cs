@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace app.Controllers {
 
@@ -14,23 +15,22 @@ namespace app.Controllers {
      
         [HttpPost]
         public IActionResult playerMovement([FromBody]IEnumerable<Cell> state) {
-            var serverMovement = new Movement();
-            var RandomColumn = new System.Random().Next(1, 8);
-            serverMovement.column = "column" + RandomColumn;
             TcpClient client = new TcpClient();
             client.Client.Connect(IPAddress.Parse("172.18.0.3"), 5051);
             var serverFormatState = state.Select(cell => {
                 var serverCell = new ServerCell();
-                serverCell.x = 1;
-                serverCell.y = 1;
+                serverCell.x = cell.column;
+                serverCell.y = cell.row;
                 serverCell.player = cell.player == "PLAYER_2" ? "X" : "O";
                 return serverCell;
             });
-            client.Client.Send(Encoding.UTF8.GetBytes("[]"));           
-            byte[] buffer = Encoding.UTF8.GetBytes("This message is longer than what the server is willing to read.");
+            string serialaizedState = JsonConvert.SerializeObject(serverFormatState);
+            Console.WriteLine(serialaizedState);
+            client.Client.Send(Encoding.UTF8.GetBytes(serialaizedState));           
+            byte[] buffer = Encoding.UTF8.GetBytes("Result");
             int len = client.GetStream().Read(buffer, 0, buffer.Length);
-            string message = Encoding.UTF8.GetString(buffer, 0, len);
-            serverMovement.column = "column" + message;
+            var serverMovement = new Movement();
+            serverMovement.column = short.Parse(Encoding.UTF8.GetString(buffer, 0, len));
             return Json(serverMovement);
         }
 
@@ -43,7 +43,7 @@ namespace app.Controllers {
     }
 
     public class Movement {
-        public string column { get;  set;}
+        public short column { get;  set;}
     }
 
     
