@@ -20,12 +20,15 @@ while True:
             else:
                 newState = json.loads(data)
                 print "received cells:", len(newState)
-                if not newState:
+                if newState:
                     for cell in newState:
                         state.board.setdefault((cell["x"], cell["y"]), cell["player"])
                         state.moves.remove((cell["x"], cell["y"]))
                 move = games.alphabeta_search(state, game, 4, None, heuristic, 'X')
+                print(str(move[0]))
+                game.display(state)
                 connection.send(str(move[0]))
+                exit(-2)
         connection.close()
     except Exception as e:
         print e
