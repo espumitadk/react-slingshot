@@ -25,7 +25,6 @@ namespace app.Controllers {
                 return serverCell;
             });
             string serialaizedState = JsonConvert.SerializeObject(serverFormatState);
-            Console.WriteLine(serialaizedState);
             client.Client.Send(Encoding.UTF8.GetBytes(serialaizedState));           
             byte[] buffer = Encoding.UTF8.GetBytes("Result");
             int len = client.GetStream().Read(buffer, 0, buffer.Length);

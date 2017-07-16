@@ -13,12 +13,12 @@ export default class Grid extends React.Component {
         }
         return (
             <div style={style}>
-                <Row row={"row1"}/>
-                <Row row={"row2"}/>
-                <Row row={"row3"}/>
-                <Row row={"row4"}/>
-                <Row row={"row5"}/>
-                <Row row={"row6"}/>
+                <Row row={6}/>
+                <Row row={5}/>
+                <Row row={4}/>
+                <Row row={3}/>
+                <Row row={2}/>
+                <Row row={1}/>
             </div>
         );
     }

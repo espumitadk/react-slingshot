@@ -24,7 +24,6 @@ while True:
             if not data: break
             else:
                 newState = json.loads(data)
-                print "received cells:", newState
                 if newState:
                     for cell in newState:
                         state.board.setdefault((cell["x"], cell["y"]), cell["player"])

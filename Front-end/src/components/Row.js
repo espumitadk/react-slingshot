@@ -6,13 +6,13 @@ export default class Row extends React.Component {
     render (){
         return (
             <BootstraRow>
-                <Cell row={this.props.row} column="column1"/>
-                <Cell row={this.props.row} column="column2"/>
-                <Cell row={this.props.row} column="column3"/>
-                <Cell row={this.props.row} column="column4"/>
-                <Cell row={this.props.row} column="column5"/>
-                <Cell row={this.props.row} column="column6"/>
-                <Cell row={this.props.row} column="column7"/>
+                <Cell row={this.props.row} column={1}/>
+                <Cell row={this.props.row} column={2}/>
+                <Cell row={this.props.row} column={3}/>
+                <Cell row={this.props.row} column={4}/>
+                <Cell row={this.props.row} column={5}/>
+                <Cell row={this.props.row} column={6}/>
+                <Cell row={this.props.row} column={7}/>
             </BootstraRow>
         );
     }

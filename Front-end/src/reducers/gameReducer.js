@@ -31,18 +31,17 @@ const insertInFirstRow = (column, game, player) => {
     const rowsInCollumns = _.map(_.filter(game.cells, cell => cell.column == column), cell => cell.row);
     if (rowsInCollumns.length == 0) {
         game.cells.push({
-            row: "row6",
+            row: 1,
             column: column,
             player: player
         });
         return;
     }
     const orderCells = _.orderBy(rowsInCollumns);
-    const topCellOcupied = orderCells[0];
-    const nextIndex = _.indexOf(["row1", "row2", "row3", "row4", "row5", "row6"], topCellOcupied);
-    const firstRow = "row" + nextIndex;
-    if(nextIndex >= 1) game.cells.push({
-        row: firstRow,
+    const topCellOcupied = orderCells[orderCells.length-1];
+    const nextRow = topCellOcupied + 1;
+    if(nextRow <= 6) game.cells.push({
+        row: nextRow,
         column: column,
         player: player
     });
