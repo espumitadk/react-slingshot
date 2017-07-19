@@ -1,15 +1,19 @@
 version: '3'
 
 services:
+  
   artificial-intelligence:
-    build: ./artificial-intelligence
+    build: ./Artificial-intelligence
 
   back-end:
     build: ./Back-end
     ports:
       - 8181:80
-  
+
   front-end:
     build: ./Front-end
     ports:
       - 3000:3000
+
+  artificial-intelligence-cache:
+    build: ./Artificial-intelligence-cache
