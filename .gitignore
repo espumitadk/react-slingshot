@@ -41,3 +41,7 @@ dist
 
 # python
 *.pyc
+
+# end-to-end-spock
+.gradle
+out
