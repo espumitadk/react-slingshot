@@ -3,17 +3,21 @@ version: '3'
 services:
   
   artificial-intelligence:
+    image: swarm-artificial-intelligence
     build: ./Artificial-intelligence
 
   back-end:
+    image: swarm-back-end
     build: ./Back-end
     ports:
-      - 8181:80
+      - 127.0.0.1:8181:80
 
   front-end:
+    image: swarm-front-end
     build: ./Front-end
     ports:
-      - 3000:3000
+      - 127.0.0.1:3000:3000
 
   artificial-intelligence-cache:
+    image: swarm-artificial-intelligence-cache
     build: ./Artificial-intelligence-cache
