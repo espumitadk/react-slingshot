@@ -1,11 +1,10 @@
-FROM microsoft/dotnet:1.0.5-sdk
+FROM python:2.7.13
+
+RUN pip install flask && pip install flask-cors
 
 WORKDIR /app
 COPY . .
 
-ENV ASPNETCORE_URLS http://+80
+EXPOSE 8181
 
-RUN dotnet restore
-
-RUN dotnet publish -c Release -o out
-ENTRYPOINT ["dotnet", "out/app.dll"]
+ENTRYPOINT [ "python", "./src/run.py" ]

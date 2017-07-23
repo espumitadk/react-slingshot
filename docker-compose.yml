@@ -10,7 +10,7 @@ services:
     image: swarm-back-end
     build: ./Back-end
     ports:
-      - 127.0.0.1:8181:80
+      - 127.0.0.1:8181:8181
 
   front-end:
     image: swarm-front-end
