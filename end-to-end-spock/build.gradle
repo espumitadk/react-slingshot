@@ -1,0 +1,14 @@
+group 'end-to-end-spock'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
+    compile 'com.github.testcontainers:testcontainers-spock:-SNAPSHOT'
+}
