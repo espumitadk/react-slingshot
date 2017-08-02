@@ -11,4 +11,8 @@ repositories {
 dependencies {
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
     compile 'com.github.testcontainers:testcontainers-spock:-SNAPSHOT'
+
+    // https://mvnrepository.com/artifact/redis.clients/jedis
+    compile group: 'redis.clients', name: 'jedis', version: '1.5.0'
+
 }
